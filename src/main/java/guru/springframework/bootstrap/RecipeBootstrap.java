@@ -32,6 +32,12 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         this.unitOfMeasureRepository = unitOfMeasureRepository;
     }
 
+    /*
+     * there may be an issue with this giving errors about lazy loading; 
+     * if so, can fix by adding @Transactional tag to the method which 
+     * will cause it all to happen w/in the same transactional context/boundaries
+     * 
+     */
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
